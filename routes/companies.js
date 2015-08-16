@@ -6,26 +6,18 @@ var Company = require('../models/company');
 
 router.route('/companies')
   .post(function(req, res) {
-    User.findById(req.params.id, function(err, user) {
+
+    console.log(req.user);
+
+    var company = new Company({
+      owner_id: req.user._id,
+      name: req.body.companyName
+    });
+
+    company.save(function(err) {
       if (err) res.send(err);
 
-      var company = new Company({
-        owner_id: user.id,
-        name: "INTERVIEWR"
-      });
-
-      company.save(function(err) {
-        if (err) res.send(err);
-
-        user.companies = company.id;
-
-        user.save(function(err) {
-          if (err) res.send(err);
-
-          res.json({message: 'Company created!'});
-        });
-      });
-
+      res.json({message: 'Company created!'});
     });
   })
   .get(function(req, res) {

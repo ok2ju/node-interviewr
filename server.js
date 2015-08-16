@@ -28,7 +28,8 @@ app.use(passport.session());
 
 // Enable CORS
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  /*res.header("Access-Control-Allow-Origin", "http://localhost:8080");*/
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   next();
@@ -104,14 +105,6 @@ app.get('/api/logout', function(req, res, next) {
   res.send(200);
 });
 
-/*app.get('*', function(req, res) {
-  res.redirect('/#' + req.originalUrl);
-});*/
-
-/*app.all('/*', function(req, res, next) {
-  res.sendFile('index.html', { root: __dirname });
-});
-*/
 app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.send(500, { message: err.message });
