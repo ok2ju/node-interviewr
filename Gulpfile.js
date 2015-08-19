@@ -13,6 +13,6 @@ gulp.task('develop', function () {
             ignore: ['ignored.js'],
             tasks: ['lint'] })
     .on('restart', function () {
-      console.log('restarted!');
+      console.log('Server was restarted!');
     });
 });
