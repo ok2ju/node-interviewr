@@ -1,5 +1,7 @@
 # Node-Interviewr
 [![Dependency Status](https://david-dm.org/ok2ju/node-interviewr.svg)](https://david-dm.org/ok2ju/node-interviewr)
+[![devDependency Status](https://david-dm.org/ok2ju/node-interviewr/dev-status.svg)](https://david-dm.org/ok2ju/node-interviewr#info=devDependencies)
+
 Interviewr NodeJS API
 
 ## Prerequisites
