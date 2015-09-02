@@ -1,10 +1,10 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
-var config = require('./config');
-var mongoose = require('./lib/mongoose');
-var cors = require('cors');
+import express from 'express';
+import path from 'path';
+import logger from 'morgan';
+import bodyParser from 'body-parser';
+import config from './config';
+import mongoose from './lib/mongoose';
+import cors from 'cors';
 
 var User = require('./models/user');
 var Company = require('./models/company');
