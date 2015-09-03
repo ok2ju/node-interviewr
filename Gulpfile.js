@@ -12,7 +12,7 @@ gulp.task('develop', function () {
         ext: 'html js',
         ignore: ['ignored.js'],
         tasks: ['lint'],
-        exec: './node_modules/.bin/babel-node'
+        exec: 'babel-node'
     }).on('restart', function () {
         console.log('Server was restarted!');
     });

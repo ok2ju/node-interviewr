@@ -4,6 +4,7 @@
   "description": "Interviewr NodeJS API",
   "repository": "https://github.com/ok2ju/node-interviewr.git",
   "scripts": {
+    "babel-node": "babel-node --stage 0 --ignore='foo|bar|baz'",
     "start": "gulp develop"
   },
   "dependencies": {
