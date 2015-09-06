@@ -9,6 +9,7 @@ var userSchema = new Schema({
   name: String,
   surname: String,
   country: String,
+  skills: [{ text: String }],
   companies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Company'}]
 });
 

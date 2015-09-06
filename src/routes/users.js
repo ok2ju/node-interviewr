@@ -75,6 +75,7 @@ router.route('/users/:id')
       user.email = req.body.email;
       user.username = req.body.username;
       user.country = req.body.country;
+      user.skills = req.body.skills;
 
       // TODO: add other fields to update
 
