@@ -1,7 +1,8 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose from '../lib/mongoose';
 
-var vacancySchema = new Schema({
+const Schema = mongoose.Schema;
+
+const vacancySchema = new Schema({
   company_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' },
   title: String
 });

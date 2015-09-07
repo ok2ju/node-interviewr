@@ -1,8 +1,11 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose from '../lib/mongoose.js';
+const Schema = mongoose.Schema;
 
-var companySchema = new Schema({
-  owner_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+const companySchema = new Schema({
+  owner_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   name: String
 });
 

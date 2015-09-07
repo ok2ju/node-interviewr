@@ -1,14 +1,10 @@
-require('babel/register')({
-    stage: 0
-});
-
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
 var eslint = require('gulp-eslint');
 
 gulp.task('develop', function () {
     nodemon({
-        script: 'src/server.js',
+        script: 'src/init.js',
         ext: 'html js',
         ignore: ['ignored.js'],
         tasks: ['lint'],
