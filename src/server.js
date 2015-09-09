@@ -1,36 +1,22 @@
 import express from 'express';
-import path from 'path';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import config from './config';
-import mongoose from './lib/mongoose';
 import cors from 'cors';
+import api from './routes/api';
 
-var User = require('./models/user');
-var Company = require('./models/company');
-var Vacancy = require('./models/vacancy');
-
-var app = express();
-var router = express.Router();
+const app = express();
 
 app.set('port', process.env.PORT || config.get('port'));
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cors());
+api(app);
 
-// Routes
-
-var companies = require('./routes/companies');
-var users = require('./routes/users');
-
-app.use('/api', companies);
-app.use('/api', users);
-
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   console.error(err.stack);
-  res.send(500, { message: err.message });
+  res.send(500, {message: err.message});
 });
 
 app.listen(app.get('port'), function() {

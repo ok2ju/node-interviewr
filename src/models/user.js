@@ -1,10 +1,11 @@
-var bcrypt = require('bcryptjs');
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import bcrypt from 'bcryptjs';
+import mongoose from '../lib/mongoose.js';
 
-var userSchema = new Schema({
-  username: { type: String, unique: true },
-  email: { type: String, unique: true },
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+  username: {type: String, unique: true},
+  email: {type: String, unique: true},
   password: String,
   name: String,
   surname: String,
@@ -14,13 +15,19 @@ var userSchema = new Schema({
 });
 
 userSchema.pre('save', function(next) {
-  var user = this;
-  if (!user.isModified('password')) return next();
-  bcrypt.genSalt(10, function(err, salt) {
-    if (err) return next(err);
-    bcrypt.hash(user.password, salt, function(err, hash) {
-      if (err) return next(err);
-      user.password = hash;
+  const self = this;
+  if(!self.isModified('password')) {
+    return next();
+  }
+  bcrypt.genSalt(10, function(salfError, salt) {
+    if(salfError) {
+      return next(salfError);
+    }
+    bcrypt.hash(self.password, salt, function(hashError, hash) {
+      if(hashError) {
+        return next(hashError);
+      }
+      self.password = hash;
       next();
     });
   });
@@ -28,9 +35,11 @@ userSchema.pre('save', function(next) {
 
 userSchema.methods.comparePassword = function(candidatePassword, cb) {
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    if (err) return cb(err);
+    if(err) {
+      return cb(err);
+    }
     cb(null, isMatch);
   });
 };
 
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);

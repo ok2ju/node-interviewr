@@ -1,42 +1,37 @@
-var express = require('express');
-var router = express.Router();
+import Company from '../models/company';
 
-var User = require('../models/user');
-var Company = require('../models/company');
-
-router.route('/companies')
-  .post(function(req, res) {
-
+export default {
+  create(req, res) {
     console.log(req.user);
-
     var company = new Company({
       owner_id: req.user._id,
       name: req.body.companyName
     });
 
     company.save(function(err) {
-      if (err) res.send(err);
+      if(err) res.send(err);
 
       res.json({message: 'Company created!'});
     });
-  })
-  .get(function(req, res) {
+  },
+
+  list(req, res) {
     Company.find(function(err, companies) {
       if(err) res.send(err);
 
       res.json(companies);
     });
-  });
+  },
 
-router.route('/companies/:id')
-  .get(function(req, res) {
+  getOne(req, res) {
     Company.findById(req.params.id, function(err, company) {
       if(err) res.send(err);
 
       res.json(company);
     });
-  })
-  .put(function(req, res) {
+  },
+
+  update(req, res) {
     Company.findById(req.params.id, function(err, company) {
       if(err) res.send(err);
 
@@ -49,8 +44,9 @@ router.route('/companies/:id')
         res.json({message: 'Company updated!'});
       });
     });
-  })
-  .delete(function(req, res) {
+  },
+
+  remove(req, res) {
     Company.remove({
       _id: req.params.id
     }, function(err, company) {
@@ -58,6 +54,5 @@ router.route('/companies/:id')
 
       res.json({message: 'Successfully deleted!'});
     });
-  });
-
-module.exports = router;
+  }
+}
