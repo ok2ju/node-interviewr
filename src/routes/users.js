@@ -10,6 +10,7 @@ export default {
   heartbeat(req, res) {
     res.status(200).send('Hello from interviewr');
   },
+
   async login(req, res) {
     try {
       const user = await User.findOne({username: req.body.username});
