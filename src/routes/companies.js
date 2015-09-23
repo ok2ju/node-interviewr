@@ -1,16 +1,16 @@
 import Company from '../models/company';
 
 export default {
-  create(req, res) {
-    console.log(req.user);
-    var company = new Company({
+  async create(req, res) {
+    const company = new Company({
       owner_id: req.user._id,
       name: req.body.companyName
     });
 
     company.save(function(err) {
-      if(err) res.send(err);
-
+      if(err) {
+        return res.send(err);
+      }
       res.json({message: 'Company created!'});
     });
   },
@@ -55,4 +55,4 @@ export default {
       res.json({message: 'Successfully deleted!'});
     });
   }
-}
+};
